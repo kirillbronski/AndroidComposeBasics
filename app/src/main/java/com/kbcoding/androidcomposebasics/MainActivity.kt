@@ -12,8 +12,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontFamily
@@ -28,7 +30,15 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            StatefulCounter()
+            var counterState by rememberSaveable {
+                mutableStateOf(CounterState(Random.nextInt(1000)))
+            }
+            StatelessCounter(
+                counterValue = counterState.count,
+                onIncrement = {
+                    counterState = counterState.copy(count = it)
+                }
+            )
         }
     }
 }
@@ -37,7 +47,15 @@ class MainActivity : ComponentActivity() {
 fun StatefulCounter() {
 
     // v1
-    val counterMutableState = remember {
+//    val counterMutableState = remember {
+//        mutableStateOf(CounterState(Random.nextInt(1000)))
+//    }
+    // kotlin destruction
+//    val (value, setValue) = remember {
+//        mutableStateOf(CounterState(Random.nextInt(1000)))
+//    }
+    // delegation
+    var counterState by rememberSaveable {
         mutableStateOf(CounterState(Random.nextInt(1000)))
     }
 
@@ -46,17 +64,55 @@ fun StatefulCounter() {
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxSize()
     ) {
+        Text(text = "Statefull")
         Text(
-            text = counterMutableState.value.count.toString(),
+            text = counterState.count.toString(),
             fontSize = 60.sp,
             fontWeight = FontWeight.Bold,
             fontFamily = FontFamily.Monospace
         )
         Spacer(modifier = Modifier.height(12.dp))
         Button(onClick = {
-            val state = counterMutableState.value
-            val newState = state.copy(count = state.count + 1)
-            counterMutableState.value = newState
+            val newState = counterState.copy(count = counterState.count + 1)
+            counterState = newState
+        }
+        ) {
+            Text(text = "Increment")
+        }
+    }
+}
+
+@Composable
+fun StatelessCounter(
+    counterValue: Int = 0,
+    onIncrement: (incrementedValue: Int) -> Unit = {}
+) {
+
+    // v1
+//    val counterMutableState = remember {
+//        mutableStateOf(CounterState(Random.nextInt(1000)))
+//    }
+    // kotlin destruction
+//    val (value, setValue) = remember {
+//        mutableStateOf(CounterState(Random.nextInt(1000)))
+//    }
+    // delegation
+
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Text(text = "Stateless")
+        Text(
+            text = counterValue.toString(),
+            fontSize = 60.sp,
+            fontWeight = FontWeight.Bold,
+            fontFamily = FontFamily.Monospace
+        )
+        Spacer(modifier = Modifier.height(12.dp))
+        Button(onClick = {
+            onIncrement(counterValue + 1)
         }
         ) {
             Text(text = "Increment")
