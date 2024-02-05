@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -97,7 +98,7 @@ fun StatelessCounter(
 //        mutableStateOf(CounterState(Random.nextInt(1000)))
 //    }
     // delegation
-
+    logCompositionLifecycle(name = "StatelessCounter")
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -117,11 +118,18 @@ fun StatelessCounter(
         ) {
             Text(text = "Increment")
         }
+        Box(modifier = Modifier.height(100.dp)) {
+            if (counterValue % 2 == 0) {
+                logCompositionLifecycle(name = "IsEventText")
+                Text(text = "Is Even = true", fontSize = 18.sp)
+            }
+        }
     }
 }
 
 @Preview(showSystemUi = true)
 @Composable
 fun Preview() {
-    StatefulCounter()
+    //StatefulCounter()
+    StatelessCounter()
 }
