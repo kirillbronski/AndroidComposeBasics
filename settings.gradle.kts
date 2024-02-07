@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "AndroidComposeBasics"
 include(":app")
- 
+include(":l14-lazycolumn")
