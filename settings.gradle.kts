@@ -19,6 +19,9 @@ dependencyResolutionManagement {
     }
 }
 
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 rootProject.name = "AndroidComposeBasics"
 include(":app")
 include(":l14-lazycolumn")
+include(":l15-lazycolumn")
