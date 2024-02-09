@@ -11,6 +11,7 @@ activityCompose = "1.8.2"
 composeBom = "2024.02.00"
 coilVer = "2.4.0"
 javaFakerVer = "1.0.2"
+constraintVer = "1.0.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -31,6 +32,7 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 
 coil = { module = "io.coil-kt:coil-compose", version.ref = "coilVer" }
 javaFaker = { module = "com.github.javafaker:javafaker", version.ref = "javaFakerVer" }
+constraint = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintVer" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
