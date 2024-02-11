@@ -4,20 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.kbcoding.androidcomposebasics"
+    namespace = "com.kbcoding.l24_scaffold"
     compileSdk = 34
 
-    signingConfigs {
-        create("release") {
-            storeFile = file(".android/debug.keystore")
-            storePassword = "android"
-            keyAlias = "androiddebugkey"
-            keyPassword = "android"
-        }
-    }
-
     defaultConfig {
-        applicationId = "com.kbcoding.androidcomposebasics"
+        applicationId = "com.kbcoding.l24_scaffold"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -31,13 +22,7 @@ android {
 
     buildTypes {
         release {
-            signingConfig = signingConfigs.getAt("release")
-//            isMinifyEnabled = false
-            postprocessing {
-                isRemoveUnusedCode = true
-                isRemoveUnusedResources = true
-                isObfuscate = false
-            }
+            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -74,9 +59,6 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-
-    implementation(libs.coil)
-
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
