@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">L28-DropdownMenu</string>
+    <string name="show">Show</string>
+    <string name="popup_menu_example">Popup Menu Example</string>
+    <string name="menu_item">Menu Item #%1$d</string>
+    <string name="clicked_on_item">Clicked on item #%1$d</string>
+</resources>
