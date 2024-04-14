@@ -1,5 +1,5 @@
 [versions]
-agp = "8.2.2"
+agp = "8.3.2"
 kotlin = "1.9.22"
 coreKtx = "1.12.0"
 junit = "4.13.2"
@@ -8,10 +8,12 @@ espressoCore = "3.5.1"
 lifecycleRuntimeKtx = "2.7.0"
 lifecycleRuntimeCompose = "2.7.0"
 activityCompose = "1.8.2"
-composeBom = "2024.02.00"
+composeBom = "2024.04.00"
 coilVer = "2.4.0"
 javaFakerVer = "1.0.2"
 constraintVer = "1.0.1"
+appcompat = "1.6.1"
+material = "1.11.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -24,6 +26,7 @@ androidx-activity-compose = { group = "androidx.activity", name = "activity-comp
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 androidx-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-foundation = { group = "androidx.compose.foundation", name = "foundation" }
 androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
@@ -33,6 +36,8 @@ androidx-material3 = { group = "androidx.compose.material3", name = "material3" 
 coil = { module = "io.coil-kt:coil-compose", version.ref = "coilVer" }
 javaFaker = { module = "com.github.javafaker:javafaker", version.ref = "javaFakerVer" }
 constraint = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintVer" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
