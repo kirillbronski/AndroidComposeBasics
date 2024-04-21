@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.kbcoding.l27_backhandler"
+    namespace = "com.kbcoding.l34_navigationscreens"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.kbcoding.l27_backhandler"
+        applicationId = "com.kbcoding.l34_navigationscreens"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -51,8 +51,11 @@ android {
 
 dependencies {
 
+    implementation(projects.l34Navigationscreens.navigation)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
