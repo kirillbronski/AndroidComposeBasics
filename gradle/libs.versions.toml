@@ -1,19 +1,20 @@
 [versions]
-agp = "8.4.0-rc02"
+agp = "8.4.0"
 kotlin = "1.9.22"
-coreKtx = "1.13.0"
+coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
+kotlinxCollectionsImmutable = "0.3.7"
 lifecycleRuntimeKtx = "2.7.0"
 lifecycleRuntimeCompose = "2.7.0"
 activityCompose = "1.9.0"
-composeBom = "2024.04.01"
-coilVer = "2.4.0"
+composeBom = "2024.05.00"
+coilVer = "2.6.0"
 javaFakerVer = "1.0.2"
 constraintVer = "1.0.1"
 appcompat = "1.6.1"
-material = "1.11.0"
+material = "1.12.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -37,6 +38,7 @@ coil = { module = "io.coil-kt:coil-compose", version.ref = "coilVer" }
 javaFaker = { module = "com.github.javafaker:javafaker", version.ref = "javaFakerVer" }
 constraint = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintVer" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinxCollectionsImmutable" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [plugins]
