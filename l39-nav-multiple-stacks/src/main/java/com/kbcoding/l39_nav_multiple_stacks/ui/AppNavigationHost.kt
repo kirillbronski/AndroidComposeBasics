@@ -26,6 +26,6 @@ fun AppNavigationHost(
 @Composable
 private fun AppNavigationHostPreview() {
     AppNavigationHost(
-        navigation = rememberNavigation(AppRoute.Tab.Items),
+        navigation = rememberNavigation(RootTabs),
     )
 }

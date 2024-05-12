@@ -18,23 +18,23 @@ import com.kbcoding.navigationstack.navigation.Route
  */
 @Composable
 fun AppNavigationBar(
-    currentRoute: Route,
-    onRouteSelected: (Route) -> Unit,
+    currentIndex: Int,
+    onIndexSelected: (Int) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     NavigationBar(
         modifier = modifier,
     ) {
-        RootTabs.forEach { tab ->
+        RootTabs.forEachIndexed { index, tab ->
             val environment = remember(tab) {
                 tab.screenProducer().environment
             }
             val icon = environment.icon
             if (icon != null) {
                 NavigationBarItem(
-                    selected = currentRoute == tab,
+                    selected = currentIndex == index,
                     label = { Text(stringResource(environment.titleRes)) },
-                    onClick = { onRouteSelected(tab) },
+                    onClick = { onIndexSelected(index) },
                     icon = {
                         Icon(
                             imageVector = icon,
@@ -51,7 +51,7 @@ fun AppNavigationBar(
 @Composable
 private fun AppNavigationBarPreview() {
     AppNavigationBar(
-        currentRoute = AppRoute.Tab.Settings,
-        onRouteSelected = {},
+        currentIndex = 0,
+        onIndexSelected = {},
     )
 }

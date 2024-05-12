@@ -21,7 +21,7 @@ import com.kbcoding.navigationstack.navigation.rememberNavigation
 @Preview(showSystemUi = true)
 fun AppScaffold() {
     val itemsRepository = ItemsRepository.get()
-    val navigation = rememberNavigation(AppRoute.Tab.Items)
+    val navigation = rememberNavigation(RootTabs)
     val (router, navigationState) = navigation
     val environment = navigationState.currentScreen.environment as AppScreenEnvironment
     Scaffold(
@@ -41,12 +41,10 @@ fun AppScaffold() {
         },
         floatingActionButtonPosition = FabPosition.End,
         bottomBar = {
-            if (navigationState.isRoot) {
-                AppNavigationBar(
-                    currentRoute = navigationState.currentRoute,
-                    onRouteSelected = router::restart,
-                )
-            }
+            AppNavigationBar(
+                currentIndex = navigationState.currentStackIndex,
+                onIndexSelected = router::switchStack,
+            )
         }
     ) { paddingValues ->
         AppNavigationHost(

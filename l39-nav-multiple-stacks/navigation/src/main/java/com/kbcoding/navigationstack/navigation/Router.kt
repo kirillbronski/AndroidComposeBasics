@@ -22,6 +22,20 @@ interface Router {
      * Remove all screens from the navigation stack and launch
      * the specified [route].
      */
-    fun restart(route: Route)
+    fun restart(route: Route) = restart(listOf(route))
+
+    /**
+     * Remove all existing navigation stacks and create new ones.
+     * Each stack will be initialized with the root screen specified by the
+     * list of [rootRoutes]. The number of stacks will be equal to list size.
+     * @param initialIndex index of the navigation stack to be displayed in the [NavigationHost].
+     */
+    fun restart(rootRoutes: List<Route>, initialIndex: Int = 0)
+
+    /**
+     * Change the current active navigation stack which should be
+     * displayed in the [NavigationHost].
+     */
+    fun switchStack(index: Int)
 
 }

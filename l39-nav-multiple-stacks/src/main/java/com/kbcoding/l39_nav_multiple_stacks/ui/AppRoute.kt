@@ -6,6 +6,8 @@ import com.kbcoding.l39_nav_multiple_stacks.ui.screens.ItemsScreenProducer
 import com.kbcoding.l39_nav_multiple_stacks.ui.screens.ProfileScreenProducer
 import com.kbcoding.l39_nav_multiple_stacks.ui.screens.SettingsScreenProducer
 import com.kbcoding.navigationstack.navigation.Route
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.parcelize.Parcelize
 
 /**
@@ -25,8 +27,10 @@ sealed class AppRoute(
     ) : AppRoute(screenProducer) {
         @Parcelize
         data object Items : Tab(ItemsScreenProducer)
+
         @Parcelize
         data object Settings : Tab(SettingsScreenProducer)
+
         @Parcelize
         data object Profile : Tab(ProfileScreenProducer)
     }
@@ -36,4 +40,4 @@ sealed class AppRoute(
  * The list of all root tabs.
  */
 val RootTabs =
-    listOf(AppRoute.Tab.Items, AppRoute.Tab.Settings, AppRoute.Tab.Profile)
+    persistentListOf(AppRoute.Tab.Items, AppRoute.Tab.Settings, AppRoute.Tab.Profile)

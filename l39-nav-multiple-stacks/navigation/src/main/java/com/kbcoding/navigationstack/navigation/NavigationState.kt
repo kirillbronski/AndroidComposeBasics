@@ -23,4 +23,10 @@ interface NavigationState {
      * Current visible to the user screen.
      */
     val currentScreen: Screen
+
+    /**
+     * Current active navigation stack which is displayed to the user
+     * in the [NavigationHost].
+     */
+    val currentStackIndex: Int
 }
