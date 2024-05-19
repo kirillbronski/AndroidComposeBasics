@@ -1,4 +1,4 @@
-package com.kbcoding.l41_nav_view_models.ui.screens
+package com.kbcoding.l41_nav_view_models.ui.screens.items
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.List
@@ -21,12 +20,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.kbcoding.l41_nav_view_models.ItemsRepository
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.kbcoding.l41_nav_view_models.R
 import com.kbcoding.l41_nav_view_models.ui.AppRoute
 import com.kbcoding.l41_nav_view_models.ui.AppScreen
 import com.kbcoding.l41_nav_view_models.ui.AppScreenEnvironment
 import com.kbcoding.l41_nav_view_models.ui.FloatingAction
+import com.kbcoding.l41_nav_view_models.ui.screens.item.ItemScreenArgs
 import com.kbcoding.navigationstack.navigation.LocalRouter
 import com.kbcoding.navigationstack.navigation.ResponseListener
 import com.kbcoding.navigationstack.navigation.Router
@@ -50,18 +50,12 @@ class ItemsScreen : AppScreen {
     @Composable
     override fun Content() {
         router = LocalRouter.current
-        val itemsRepository = ItemsRepository.get()
-        val items by itemsRepository.getItems().collectAsStateWithLifecycle()
+        val viewModel = viewModel<ItemsViewModel>()
+        val items by viewModel.itemsFlow.collectAsStateWithLifecycle()
         val isEmpty by remember {
             derivedStateOf { items.isEmpty() }
         }
-        ResponseListener<ItemScreenResponse> { response ->
-            if (response.args is ItemScreenArgs.Edit) {
-                itemsRepository.updateItem(response.args.index, response.newValue)
-            } else {
-                itemsRepository.addItem(response.newValue)
-            }
-        }
+        ResponseListener(viewModel::processResponse)
         ItemsContent(
             isEmpty = isEmpty,
             items = { items },
@@ -111,6 +105,6 @@ private fun ItemsPreview() {
     ItemsContent(
         items = { listOf("111", "222", "333") },
         isEmpty = false,
-        onItemClicked = {}
+        onItemClicked = {},
     )
 }

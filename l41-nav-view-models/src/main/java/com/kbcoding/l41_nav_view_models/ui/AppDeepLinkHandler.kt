@@ -1,7 +1,7 @@
 package com.kbcoding.l41_nav_view_models.ui
 
 import android.net.Uri
-import com.kbcoding.l41_nav_view_models.ui.screens.ItemScreenArgs
+import com.kbcoding.l41_nav_view_models.ui.screens.item.ItemScreenArgs
 import com.kbcoding.navigationstack.navigation.links.DeepLinkHandler
 import com.kbcoding.navigationstack.navigation.links.MultiStackState
 

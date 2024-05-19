@@ -1,4 +1,4 @@
-package com.kbcoding.l41_nav_view_models.ui.screens
+package com.kbcoding.l41_nav_view_models.ui.screens.item
 
 import android.os.Parcelable
 import androidx.compose.foundation.layout.Arrangement
@@ -21,8 +21,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.kbcoding.l41_nav_view_models.R
-import com.kbcoding.l41_nav_view_models.ItemsRepository
 import com.kbcoding.l41_nav_view_models.ui.AppRoute
 import com.kbcoding.l41_nav_view_models.ui.AppScreen
 import com.kbcoding.l41_nav_view_models.ui.AppScreenEnvironment
@@ -37,14 +37,13 @@ fun itemScreenProducer(args: ItemScreenArgs): () -> ItemScreen {
 sealed class ItemScreenArgs : Parcelable {
     @Parcelize
     data object Add : ItemScreenArgs()
-
     @Parcelize
     data class Edit(val index: Int) : ItemScreenArgs()
 }
 
 data class ItemScreenResponse(
     val args: ItemScreenArgs,
-    val newValue: String
+    val newValue: String,
 )
 
 class ItemScreen(
@@ -52,21 +51,19 @@ class ItemScreen(
 ) : AppScreen {
 
     override val environment = AppScreenEnvironment().apply {
-        titleRes = if (args is ItemScreenArgs.Add) R.string.add_item else R.string.edit_item
+        titleRes = if (args is ItemScreenArgs.Add) {
+            R.string.add_item
+        } else {
+            R.string.edit_item
+        }
     }
 
     @Composable
     override fun Content() {
-        val itemsRepository = ItemsRepository.get()
+        val viewModel = viewModel { ItemViewModel(args) }
         val router = LocalRouter.current
         ItemContent(
-            initialValue = if (args is ItemScreenArgs.Edit) {
-                remember {
-                    itemsRepository.getItems().value[args.index]
-                }
-            } else {
-                ""
-            },
+            initialValue = remember { viewModel.getInitialValue() },
             isAddMode = args is ItemScreenArgs.Add,
             onSubmitNewItem = { newValue ->
                 router.pop(ItemScreenResponse(args, newValue))
@@ -108,12 +105,12 @@ fun ItemContent(
             enabled = isAddEnabled,
             onClick = { onSubmitNewItem(currentItemValue) }
         ) {
-            if (isAddMode)
-                Text(text = stringResource(R.string.add_new_item))
-            else
-                Text(
-                    text = stringResource(R.string.edit_item)
-                )
+            val buttonText = if (isAddMode) {
+                R.string.add_item
+            } else {
+                R.string.edit_item
+            }
+            Text(text = stringResource(buttonText))
         }
         Button(
             onClick = onLaunchSettingsScreen,
