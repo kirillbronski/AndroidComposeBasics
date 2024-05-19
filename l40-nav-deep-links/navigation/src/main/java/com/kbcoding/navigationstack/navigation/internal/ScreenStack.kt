@@ -6,6 +6,7 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.compose.runtime.toMutableStateList
 import androidx.core.os.ParcelCompat
 import com.kbcoding.navigationstack.navigation.NavigationState
 import com.kbcoding.navigationstack.navigation.Route
@@ -32,6 +33,9 @@ internal class ScreenStack(
     }
     val screenResponseReceiver: ScreenResponseReceiver = screenResponsesBus
 
+    constructor(routes: List<Route>) : this(
+        routes.map(::RouteRecord).toMutableStateList()
+    )
 
     constructor(parcel: Parcel) : this(
         SnapshotStateList<RouteRecord>().also { newList ->
