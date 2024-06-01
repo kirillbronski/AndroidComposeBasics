@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">l41_nav_view_models</string>
+    <string name="app_name">l42_nav_view_models_hilt</string>
     <string name="scaffold_app">Scaffold App</string>
     <string name="main_menu">Main Menu</string>
 

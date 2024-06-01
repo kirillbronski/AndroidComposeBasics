@@ -3,6 +3,8 @@ package com.kbcoding.l42_nav_view_models_hilt
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Repository for storing and managing the list of items.
@@ -27,27 +29,27 @@ interface ItemsRepository {
      * be automatically updated.
      */
     fun clear()
-
-    companion object {
-        fun get(): com.kbcoding.l42_nav_view_models_hilt.ItemsRepository =
-            com.kbcoding.l42_nav_view_models_hilt.ItemsRepositoryImpl
-    }
+    // old way to get an instance of ItemsRepository:
+//    companion object {
+//        fun get(): ItemsRepository = ItemsRepositoryImpl
+//    }
 }
 
-object ItemsRepositoryImpl : com.kbcoding.l42_nav_view_models_hilt.ItemsRepository {
+@Singleton
+class ItemsRepositoryImpl @Inject constructor() : ItemsRepository {
 
-    private val items = MutableStateFlow(com.kbcoding.l42_nav_view_models_hilt.ItemsRepositoryImpl.generateFakeItems())
+    private val items = MutableStateFlow(generateFakeItems())
 
     override fun getItems(): StateFlow<List<String>> {
-        return com.kbcoding.l42_nav_view_models_hilt.ItemsRepositoryImpl.items
+        return items
     }
 
     override fun addItem(item: String) {
-        com.kbcoding.l42_nav_view_models_hilt.ItemsRepositoryImpl.items.update { it + item }
+        items.update { it + item }
     }
 
     override fun updateItem(index: Int, newValues: String) {
-        com.kbcoding.l42_nav_view_models_hilt.ItemsRepositoryImpl.items.update {
+        items.update {
             it.toMutableList().apply {
                 set(index, newValues)
             }
@@ -55,7 +57,7 @@ object ItemsRepositoryImpl : com.kbcoding.l42_nav_view_models_hilt.ItemsReposito
     }
 
     override fun clear() {
-        com.kbcoding.l42_nav_view_models_hilt.ItemsRepositoryImpl.items.update { emptyList() }
+        items.update { emptyList() }
     }
 
     private fun generateFakeItems() = List(10) {

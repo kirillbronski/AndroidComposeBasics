@@ -23,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.kbcoding.l42_nav_view_models_hilt.R
+import com.kbcoding.l42_nav_view_models_hilt.di.injectViewModel
 import com.kbcoding.l42_nav_view_models_hilt.ui.AppRoute
 import com.kbcoding.l42_nav_view_models_hilt.ui.AppScreen
 import com.kbcoding.l42_nav_view_models_hilt.ui.AppScreenEnvironment
@@ -37,6 +38,7 @@ fun itemScreenProducer(args: ItemScreenArgs): () -> ItemScreen {
 sealed class ItemScreenArgs : Parcelable {
     @Parcelize
     data object Add : ItemScreenArgs()
+
     @Parcelize
     data class Edit(val index: Int) : ItemScreenArgs()
 }
@@ -60,7 +62,9 @@ class ItemScreen(
 
     @Composable
     override fun Content() {
-        val viewModel = viewModel { ItemViewModel(args) }
+        val viewModel = injectViewModel<ItemViewModel, ItemViewModel.Factory> { factory ->
+            factory.create(args)
+        }
         val router = LocalRouter.current
         ItemContent(
             initialValue = remember { viewModel.getInitialValue() },

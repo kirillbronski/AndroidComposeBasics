@@ -13,8 +13,13 @@ composeBom = "2024.05.00"
 coilVer = "2.6.0"
 javaFakerVer = "1.0.2"
 constraintVer = "1.0.1"
-appcompat = "1.6.1"
+appcompat = "1.7.0"
 material = "1.12.0"
+ksp = "1.9.22-1.0.17"
+hiltVer = "2.51.1"
+daggerVer = "2.51.1"
+hiltNavComposeVer = "1.0.0"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -42,8 +47,20 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinxCollectionsImmutable" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
+hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hiltVer" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hiltVer" }
+
+#hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose:", version.ref = "hiltNavComposeVer" }
+
+#dagger = { group = "com.google.dagger", name = "dagger", version.ref = "daggerVer" }
+#dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "daggerVer" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "agp" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hiltVer" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+#kotlin-serailization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 

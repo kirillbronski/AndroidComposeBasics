@@ -7,8 +7,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.List
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
@@ -20,8 +20,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.kbcoding.l42_nav_view_models_hilt.R
+import com.kbcoding.l42_nav_view_models_hilt.di.injectViewModel
 import com.kbcoding.l42_nav_view_models_hilt.ui.AppRoute
 import com.kbcoding.l42_nav_view_models_hilt.ui.AppScreen
 import com.kbcoding.l42_nav_view_models_hilt.ui.AppScreenEnvironment
@@ -38,7 +38,7 @@ class ItemsScreen : AppScreen {
 
     override val environment = AppScreenEnvironment().apply {
         titleRes = R.string.items
-        icon = Icons.Default.List
+        icon = Icons.AutoMirrored.Filled.List
         floatingAction = FloatingAction(
             icon = Icons.Default.Add,
             onClick = {
@@ -50,7 +50,7 @@ class ItemsScreen : AppScreen {
     @Composable
     override fun Content() {
         router = LocalRouter.current
-        val viewModel = viewModel<ItemsViewModel>()
+        val viewModel = injectViewModel<ItemsViewModel>()
         val items by viewModel.itemsFlow.collectAsStateWithLifecycle()
         val isEmpty by remember {
             derivedStateOf { items.isEmpty() }
