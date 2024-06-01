@@ -3,6 +3,7 @@ package com.kbcoding.l42_nav_view_models_hilt.ui.scaffold
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.MoreVert
@@ -62,7 +63,7 @@ fun AppToolbar(
                     imageVector = if (isRoot)
                         Icons.Default.Menu
                     else
-                        Icons.Default.ArrowBack,
+                        Icons.AutoMirrored.Filled.ArrowBack,
                     contentDescription = stringResource(R.string.main_menu),
                 )
             }

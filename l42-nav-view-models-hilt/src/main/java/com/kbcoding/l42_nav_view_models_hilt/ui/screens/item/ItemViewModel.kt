@@ -2,10 +2,15 @@ package com.kbcoding.l42_nav_view_models_hilt.ui.screens.item
 
 import androidx.lifecycle.ViewModel
 import com.kbcoding.l42_nav_view_models_hilt.ItemsRepository
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
+import dagger.hilt.android.lifecycle.HiltViewModel
 
-class ItemViewModel(
-    private val args: ItemScreenArgs,
-    private val repository: com.kbcoding.l42_nav_view_models_hilt.ItemsRepository = com.kbcoding.l42_nav_view_models_hilt.ItemsRepository.get(),
+@HiltViewModel(assistedFactory = ItemViewModel.Factory::class)
+class ItemViewModel @AssistedInject constructor(
+    @Assisted private val args: ItemScreenArgs,
+    private val repository: ItemsRepository,
 ) : ViewModel() {
 
     init {
@@ -22,6 +27,11 @@ class ItemViewModel(
     override fun onCleared() {
         super.onCleared()
         println("AAAAA ItemViewModel-${hashCode()} destroyed")
+    }
+
+    @AssistedFactory
+    interface Factory {
+        fun create(args: ItemScreenArgs): ItemViewModel
     }
 
 }
