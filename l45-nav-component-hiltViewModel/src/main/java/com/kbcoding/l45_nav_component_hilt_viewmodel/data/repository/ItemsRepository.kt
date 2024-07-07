@@ -1,4 +1,4 @@
-package com.kbcoding.l44_nav_component_hilt.data.repository
+package com.kbcoding.l45_nav_component_hilt_viewmodel.data.repository
 
 import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -9,5 +9,4 @@ import javax.inject.Singleton
 class ItemsRepository @Inject constructor(
     @ApplicationContext private val context: Context,
 ) {
-
 }
