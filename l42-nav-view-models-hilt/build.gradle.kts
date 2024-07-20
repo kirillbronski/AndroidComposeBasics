@@ -12,7 +12,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.kbcoding.l41_nav_view_models_hilt"
+        applicationId = "com.kbcoding.l42_nav_view_models_hilt"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

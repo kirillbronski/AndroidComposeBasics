@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.kbcoding.l43_nav_component"
+    namespace = "com.kbcoding.l44_nav_component_hilt"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.kbcoding.l43_nav_component"
+        applicationId = "com.kbcoding.l44_nav_component_hilt"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
