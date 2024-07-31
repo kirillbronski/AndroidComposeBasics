@@ -6,26 +6,24 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
 import com.kbcoding.l46_1_nav_component_environment.R
 import com.kbcoding.l46_1_nav_component_hilt_environment.data.repository.ItemsRepository
+import com.kbcoding.l46_1_nav_component_hilt_environment.navigation.ScreenEnvironment
+import com.kbcoding.l46_1_nav_component_hilt_environment.navigation.rememberNavigation
 import com.kbcoding.l46_1_nav_component_hilt_environment.screens.LocalNavController
 import com.kbcoding.l46_1_nav_component_hilt_environment.screens.Route
 import com.kbcoding.l46_1_nav_component_hilt_environment.screens.addItem.AddItemScreen
-import com.kbcoding.l46_1_nav_component_hilt_environment.screens.items.ItemsScreen
+import com.kbcoding.l46_1_nav_component_hilt_environment.screens.items.itemsScreen
 import com.kbcoding.l46_1_nav_component_hilt_environment.ui.theme.AndroidComposeBasicsTheme
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -42,7 +40,13 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             AndroidComposeBasicsTheme {
+                // A surface container using the 'background' color from the theme
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
                     NavApp()
+                }
             }
         }
     }
@@ -50,54 +54,55 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun NavApp() {
-
-    val navController = rememberNavController()
-    val currentBackStackEntry by navController.currentBackStackEntryAsState()
-    val titleRes = when (currentBackStackEntry?.destination?.route) {
-        Route.Items.path -> R.string.items_screen
-        Route.AddItem.path -> R.string.add_item_screen
-        else -> R.string.app_name
+    val navigation = rememberNavigation(startDestination = Route.Items.path) {
+        screen(Route.Items.path) { itemsScreen() }
+        screen(Route.AddItem.path) {
+            content { AddItemScreen() }
+            environment {
+                titleRes = R.string.add_item_screen
+            }
+        }
     }
+    val navController = navigation.navController
+    val navGraph = navigation.navGraph
+    val environment: ScreenEnvironment = navigation.environment
 
     Scaffold(
         topBar = {
             AppToolbar(
-                titleRes = titleRes,
                 navigateUpAction = if (navController.previousBackStackEntry == null) {
                     NavigateUpAction.Hidden
                 } else {
                     NavigateUpAction.Visible(
                         onClick = { navController.navigateUp() }
                     )
-                }
+                },
+                titleRes = environment.titleRes,
             )
         },
         floatingActionButton = {
-            if (currentBackStackEntry?.destination?.route == Route.Items.path) {
+            val floatingAction = environment.floatingAction
+            if (floatingAction != null) {
                 FloatingActionButton(
-                    onClick = { navController.navigate(Route.AddItem.path) }
+                    onClick = floatingAction.onClick
                 ) {
-                    Icon(imageVector = Icons.Default.Add, contentDescription = null)
+                    Icon(imageVector = floatingAction.icon, contentDescription = null)
                 }
             }
         }
-    ) { paddingValues ->
+    ) {
         CompositionLocalProvider(
-            value = LocalNavController provides navController
+            LocalNavController provides navController,
         ) {
             NavHost(
                 navController = navController,
-                startDestination = Route.Items.path,
+                graph = navGraph,
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(paddingValues)
-            ) {
-                composable(Route.Items.path) { ItemsScreen() }
-                composable(Route.AddItem.path) { AddItemScreen() }
-            }
+                    .padding(it),
+            )
         }
     }
-
 }
 
 @Preview(showBackground = true)

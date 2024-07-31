@@ -20,18 +20,34 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.kbcoding.l46_1_nav_component_environment.R
+import com.kbcoding.l46_1_nav_component_hilt_environment.navigation.CustomScreenBuilder
+import com.kbcoding.l46_1_nav_component_hilt_environment.navigation.FloatingAction
 import com.kbcoding.l46_1_nav_component_hilt_environment.screens.LocalNavController
 import com.kbcoding.l46_1_nav_component_hilt_environment.screens.Route
 
-@Composable
-fun ItemsScreen() {
 
-    val viewModel: ItemsViewModel = hiltViewModel()
-    val uiState = viewModel.stateFlow.collectAsState()
+fun CustomScreenBuilder.itemsScreen() {
+    environment {
+        titleRes = R.string.items_screen
+        floatingAction = FloatingAction(
+            icon = Icons.Default.Add,
+            onClick = {
+                navController.navigate(Route.AddItem.path)
+            }
+        )
+    }
 
-    ItemsContent(
-        getScreenState = { uiState.value },
-    )
+    content {
+        val viewModel: ItemsViewModel = hiltViewModel()
+        val uiState = viewModel.stateFlow.collectAsState()
+
+        ItemsContent(
+            getScreenState = { uiState.value },
+        )
+    }
+
+
 }
 
 @Composable
