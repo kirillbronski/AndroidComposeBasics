@@ -27,21 +27,16 @@ import com.kbcoding.l46_nav_component_hilt_environment.screens.Route
 fun ItemsScreen() {
 
     val viewModel: ItemsViewModel = hiltViewModel()
-    val navController = LocalNavController.current
     val uiState = viewModel.stateFlow.collectAsState()
 
     ItemsContent(
         getScreenState = { uiState.value },
-        onLaunchAddItemScreen = {
-            navController.navigate(Route.AddItem.path)
-        },
     )
 }
 
 @Composable
 fun ItemsContent(
     getScreenState: () -> ItemsViewModel.ScreenState,
-    onLaunchAddItemScreen: () -> Unit,
 ) {
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -64,14 +59,6 @@ fun ItemsContent(
                 }
             }
         }
-        FloatingActionButton(
-            onClick = onLaunchAddItemScreen,
-            modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .padding(16.dp)
-        ) {
-            Icon(imageVector = Icons.Default.Add, contentDescription = null)
-        }
     }
 }
 
@@ -80,6 +67,5 @@ fun ItemsContent(
 fun ItemsScreenPreview() {
     ItemsContent(
         getScreenState = { ItemsViewModel.ScreenState.Loading },
-        onLaunchAddItemScreen = {}
     )
 }

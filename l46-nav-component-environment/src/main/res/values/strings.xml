@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">l45-nav-component-hilt_viewmodel</string>
+    <string name="app_name">l46-nav-component-environment</string>
+    <string name="items_screen">Items</string>
+    <string name="add_item_screen">Add Item</string>
 </resources>
