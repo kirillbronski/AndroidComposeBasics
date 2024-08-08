@@ -1,10 +1,12 @@
-package com.kbcoding.l46_nav_component_hilt_environment.screens.items
+package com.kbcoding.l47_nav_component_hilt_args.screens.items
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -14,17 +16,33 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.kbcoding.l47_nav_component_args.R
+import com.kbcoding.l47_nav_component_hilt_args.navigation.CustomScreenBuilder
+import com.kbcoding.l47_nav_component_hilt_args.navigation.FloatingAction
+import com.kbcoding.l47_nav_component_hilt_args.screens.Route
 
 
-@Composable
-fun ItemsScreen() {
+fun CustomScreenBuilder.itemsScreen() {
+    environment {
+        titleRes = R.string.items_screen
+        floatingAction = FloatingAction(
+            icon = Icons.Default.Add,
+            onClick = {
+                navController.navigate(Route.AddItem.path)
+            }
+        )
+    }
 
-    val viewModel: ItemsViewModel = hiltViewModel()
-    val uiState = viewModel.stateFlow.collectAsState()
+    content {
+        val viewModel: ItemsViewModel = hiltViewModel()
+        val uiState = viewModel.stateFlow.collectAsState()
 
-    ItemsContent(
-        getScreenState = { uiState.value },
-    )
+        ItemsContent(
+            getScreenState = { uiState.value },
+        )
+    }
+
+
 }
 
 @Composable
