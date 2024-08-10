@@ -10,11 +10,7 @@ import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.withContext
 
 @Composable
-fun <T> EventConsumer(
-    channel: ReceiveChannel<T>,
-    block: (T) -> Unit,
-    modifier: Modifier = Modifier
-) {
+fun <T> EventConsumer(channel: ReceiveChannel<T>, block: (T) -> Unit) {
     val blockState by rememberUpdatedState(block)
     LaunchedEffect(Unit) {
         withContext(Dispatchers.Main.immediate) {

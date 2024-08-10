@@ -1,26 +1,27 @@
 [versions]
-agp = "8.5.1"
+agp = "8.5.2"
 hiltNavigationCompose = "1.2.0"
-kotlin = "2.0.0"
+kotlin = "2.0.10"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 kotlinxCollectionsImmutable = "0.3.7"
-lifecycleRuntimeKtx = "2.8.3"
-lifecycleRuntimeCompose = "2.8.3"
-activityCompose = "1.9.0"
+lifecycleRuntimeKtx = "2.8.4"
+lifecycleRuntimeCompose = "2.8.4"
+activityCompose = "1.9.1"
 composeBom = "2024.06.00"
 coilVer = "2.6.0"
 javaFakerVer = "1.0.2"
 constraintVer = "1.0.1"
 appcompat = "1.7.0"
 material = "1.12.0"
-ksp = "2.0.0-1.0.21"
+ksp = "2.0.10-1.0.24"
 hiltVer = "2.51.1"
 daggerVer = "2.51.1"
 hiltNavComposeVer = "1.2.0"
-navigationVer = "2.7.7"
+navigationVer = "2.8.0-beta06"
+ktxSerialization = "1.6.3"
 
 
 [libraries]
@@ -55,7 +56,7 @@ hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", v
 nav-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationVer" }
 hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 
-#hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavComposeVer" }
+kotlinx-serialization-core = { module ="org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "ktxSerialization" }
 
 #dagger = { group = "com.google.dagger", name = "dagger", version.ref = "daggerVer" }
 #dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", version.ref = "daggerVer" }
@@ -67,6 +68,6 @@ android-library = { id = "com.android.library", version.ref = "agp" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hiltVer" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
-compose-compiller = {id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin"}
-#kotlin-serailization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+compose-compiller = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlin-serailization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 

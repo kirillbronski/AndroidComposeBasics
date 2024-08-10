@@ -27,11 +27,7 @@ fun AppToolbar(
 
     CenterAlignedTopAppBar(
         title = {
-            if (titleRes != 0) {
-                Text(
-                    text = stringResource(titleRes)
-                )
-            }
+            Text(text = stringResource(id = titleRes))
         },
         navigationIcon = {
             if (navigateUpAction is NavigateUpAction.Visible) {

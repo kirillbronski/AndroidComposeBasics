@@ -26,7 +26,7 @@ class AddItemViewModel @Inject constructor(
     fun addItem(title: String) {
         viewModelScope.launch {
             _stateFlow.update { it.copy(isAddInProgress = true) }
-            repository.addItem(title = title)
+            repository.add(title = title)
             _exitChannel.send(Unit)
         }
     }

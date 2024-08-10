@@ -7,4 +7,5 @@ plugins {
     alias(libs.plugins.hilt) apply false
     alias(libs.plugins.kotlin.parcelize) apply false
     alias(libs.plugins.compose.compiller) apply false
+    alias(libs.plugins.kotlin.serailization) apply false
 }
