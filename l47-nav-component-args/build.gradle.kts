@@ -9,12 +9,12 @@ plugins {
 
 android {
     namespace = "com.kbcoding.l47_nav_component_args"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.kbcoding.l47_nav_component_args"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 

@@ -9,12 +9,12 @@ plugins {
 
 android {
     namespace = "com.kbcoding.l42_nav_view_models_hilt"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.kbcoding.l42_nav_view_models_hilt"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 

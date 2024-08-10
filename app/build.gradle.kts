@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.kbcoding.androidcomposebasics"
-    compileSdk = 34
+    compileSdk = 35
 
     signingConfigs {
         create("release") {
@@ -20,7 +20,7 @@ android {
     defaultConfig {
         applicationId = "com.kbcoding.androidcomposebasics"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 

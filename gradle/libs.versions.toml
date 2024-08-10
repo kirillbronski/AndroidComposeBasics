@@ -20,7 +20,7 @@ ksp = "2.0.10-1.0.24"
 hiltVer = "2.51.1"
 daggerVer = "2.51.1"
 hiltNavComposeVer = "1.2.0"
-navigationVer = "2.8.0-beta06"
+navigationVer = "2.8.0-beta07"
 ktxSerialization = "1.6.3"
 
 

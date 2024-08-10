@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.kbcoding.l25_topappbar"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.kbcoding.l25_topappbar"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
