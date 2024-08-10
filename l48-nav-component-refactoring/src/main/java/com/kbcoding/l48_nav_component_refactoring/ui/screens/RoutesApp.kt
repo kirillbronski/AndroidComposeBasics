@@ -1,4 +1,4 @@
-package com.kbcoding.l48_nav_component_refactoring.screens
+package com.kbcoding.l48_nav_component_refactoring.ui.screens
 
 import androidx.navigation.NavBackStackEntry
 import kotlinx.serialization.Serializable

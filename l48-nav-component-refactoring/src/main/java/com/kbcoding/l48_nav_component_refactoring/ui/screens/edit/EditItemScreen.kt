@@ -1,4 +1,4 @@
-package com.kbcoding.l48_nav_component_refactoring.screens.edit
+package com.kbcoding.l48_nav_component_refactoring.ui.screens.edit
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -22,9 +22,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kbcoding.l48_nav_component_refactoring.R
 import com.kbcoding.l48_nav_component_refactoring.EventConsumer
-import com.kbcoding.l48_nav_component_refactoring.screens.RouteEditItem
-import com.kbcoding.l48_nav_component_refactoring.screens.LocalNavController
-import com.kbcoding.l48_nav_component_refactoring.screens.routeClass
+import com.kbcoding.l48_nav_component_refactoring.data.LoadResult
+import com.kbcoding.l48_nav_component_refactoring.ui.components.ItemDetails
+import com.kbcoding.l48_nav_component_refactoring.ui.components.ItemDetailsState
+import com.kbcoding.l48_nav_component_refactoring.ui.components.LoadResultContent
+import com.kbcoding.l48_nav_component_refactoring.ui.screens.RouteEditItem
+import com.kbcoding.l48_nav_component_refactoring.ui.screens.LocalNavController
+import com.kbcoding.l48_nav_component_refactoring.ui.screens.routeClass
 
 @Composable
 fun EditItemScreen(
@@ -41,49 +45,42 @@ fun EditItemScreen(
     }
     val screenState by viewModel.stateFlow.collectAsStateWithLifecycle()
     EditItemContent(
-        state = screenState,
+        loadResult = screenState,
         onEditButtonClicked = viewModel::update,
     )
 }
 
 @Composable
 fun EditItemContent(
-    state: EditItemViewModel.ScreenState,
+    loadResult: LoadResult<EditItemViewModel.ScreenState>,
     onEditButtonClicked: (String) -> Unit,
 ) {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-    ) {
-        when (state) {
-            EditItemViewModel.ScreenState.Loading -> CircularProgressIndicator()
-            is EditItemViewModel.ScreenState.Success -> SuccessEditItemContent(state, onEditButtonClicked)
+
+    LoadResultContent(
+        loadResult = loadResult,
+        content = { screenState ->
+            SuccessEditItemContent(
+                state = screenState,
+                onEditButtonClicked = onEditButtonClicked
+            )
         }
-    }
+    )
 }
 
 @Composable
 private fun SuccessEditItemContent(
-    state: EditItemViewModel.ScreenState.Success,
+    state: EditItemViewModel.ScreenState,
     onEditButtonClicked: (String) -> Unit,
 ) {
-    var inputText by rememberSaveable { mutableStateOf(state.loadedItem) }
-    OutlinedTextField(
-        value = inputText,
-        onValueChange = { inputText = it },
-        placeholder = { Text(stringResource(R.string.edit_item_screen)) },
-        enabled = !state.isEditInProgress,
+
+    ItemDetails(
+        state = ItemDetailsState(
+            loadedItem = state.loadedItem,
+            textFieldPlaceholder = stringResource(id = R.string.edit_item_title),
+            actionButtonText = stringResource(id = R.string.edit),
+            isActionInProgress = state.isEditInProgress
+        ),
+        onActionButtonClicked = onEditButtonClicked,
+        modifier = Modifier.fillMaxSize()
     )
-    Button(
-        onClick = { onEditButtonClicked(inputText) },
-        enabled = inputText.isNotBlank() && !state.isEditInProgress,
-    ) {
-        Text(text = stringResource(R.string.edit))
-    }
-    Box(modifier = Modifier.size(32.dp)) {
-        if (state.isEditInProgress) {
-            CircularProgressIndicator(Modifier.fillMaxSize())
-        }
-    }
 }

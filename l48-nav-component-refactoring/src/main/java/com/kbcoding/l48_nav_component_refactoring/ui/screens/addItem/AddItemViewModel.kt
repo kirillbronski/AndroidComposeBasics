@@ -1,4 +1,4 @@
-package com.kbcoding.l48_nav_component_refactoring.screens.addItem
+package com.kbcoding.l48_nav_component_refactoring.ui.screens.addItem
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

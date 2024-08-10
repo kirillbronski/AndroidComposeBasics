@@ -21,14 +21,14 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import com.kbcoding.l48_nav_component_refactoring.screens.LocalNavController
-import com.kbcoding.l48_nav_component_refactoring.screens.RouteAddItem
-import com.kbcoding.l48_nav_component_refactoring.screens.RouteEditItem
-import com.kbcoding.l48_nav_component_refactoring.screens.RouteItems
-import com.kbcoding.l48_nav_component_refactoring.screens.addItem.AddItemScreen
-import com.kbcoding.l48_nav_component_refactoring.screens.edit.EditItemScreen
-import com.kbcoding.l48_nav_component_refactoring.screens.items.ItemsScreen
-import com.kbcoding.l48_nav_component_refactoring.screens.routeClass
+import com.kbcoding.l48_nav_component_refactoring.ui.screens.LocalNavController
+import com.kbcoding.l48_nav_component_refactoring.ui.screens.RouteAddItem
+import com.kbcoding.l48_nav_component_refactoring.ui.screens.RouteEditItem
+import com.kbcoding.l48_nav_component_refactoring.ui.screens.RouteItems
+import com.kbcoding.l48_nav_component_refactoring.ui.screens.addItem.AddItemScreen
+import com.kbcoding.l48_nav_component_refactoring.ui.screens.edit.EditItemScreen
+import com.kbcoding.l48_nav_component_refactoring.ui.screens.items.ItemsScreen
+import com.kbcoding.l48_nav_component_refactoring.ui.screens.routeClass
 import com.kbcoding.l48_nav_component_refactoring.ui.theme.AndroidComposeBasicsTheme
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -1,7 +1,8 @@
-package com.kbcoding.l48_nav_component_refactoring.screens.items
+package com.kbcoding.l48_nav_component_refactoring.ui.screens.items
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.kbcoding.l48_nav_component_refactoring.data.LoadResult
 import com.kbcoding.l48_nav_component_refactoring.data.repository.ItemsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
@@ -13,18 +14,15 @@ import javax.inject.Inject
 @HiltViewModel
 class ItemsViewModel @Inject constructor(
     repository: ItemsRepository
-): ViewModel() {
+) : ViewModel() {
 
-    val stateFlow: StateFlow<ScreenState> = repository.getItems()
-        .map(ScreenState::Success)
+    val stateFlow: StateFlow<LoadResult<ScreenState>> = repository.getItems()
+        .map { LoadResult.Success(ScreenState(it)) }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.Lazily,
-            initialValue = ScreenState.Loading
+            initialValue = LoadResult.Loading
         )
 
-    sealed class ScreenState {
-        data object Loading : ScreenState()
-        data class Success(val items: List<String>) : ScreenState()
-    }
+    data class ScreenState(val items: List<String>)
 }

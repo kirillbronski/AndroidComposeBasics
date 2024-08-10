@@ -1,4 +1,4 @@
-package com.kbcoding.l48_nav_component_refactoring.screens.items
+package com.kbcoding.l48_nav_component_refactoring.ui.screens.items
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -16,8 +16,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.kbcoding.l48_nav_component_refactoring.screens.RouteEditItem
-import com.kbcoding.l48_nav_component_refactoring.screens.LocalNavController
+import com.kbcoding.l48_nav_component_refactoring.data.LoadResult
+import com.kbcoding.l48_nav_component_refactoring.ui.components.LoadResultContent
+import com.kbcoding.l48_nav_component_refactoring.ui.screens.RouteEditItem
+import com.kbcoding.l48_nav_component_refactoring.ui.screens.LocalNavController
 
 
 @Composable
@@ -28,7 +30,7 @@ fun ItemsScreen() {
     val navController = LocalNavController.current
 
     ItemsContent(
-        getScreenState = { uiState.value },
+        getLoadResult = { uiState.value },
         onItemClicked = { index ->
             navController.navigate(RouteEditItem(index))
         }
@@ -37,40 +39,34 @@ fun ItemsScreen() {
 
 @Composable
 fun ItemsContent(
-    getScreenState: () -> ItemsViewModel.ScreenState,
+    getLoadResult: () -> LoadResult<ItemsViewModel.ScreenState>,
     onItemClicked: (Int) -> Unit = {},
 ) {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-    ) {
-        when (val screenState = getScreenState()) {
-            is ItemsViewModel.ScreenState.Loading -> {
-                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-            }
 
-            is ItemsViewModel.ScreenState.Success -> {
-                LazyColumn(
-                    modifier = Modifier.fillMaxSize()
-                ) {
-                    itemsIndexed(screenState.items) { index, item ->
-                        Text(
-                            text = item,
-                            modifier = Modifier
-                                .clickable { onItemClicked(index) }
-                                .fillMaxWidth()
-                                .padding(12.dp)
-                        )
-                    }
+    LoadResultContent(
+        loadResult = getLoadResult.invoke(),
+        content = { screenState ->
+            LazyColumn(
+                modifier = Modifier.fillMaxSize()
+            ) {
+                itemsIndexed(screenState.items) { index, item ->
+                    Text(
+                        text = item,
+                        modifier = Modifier
+                            .clickable { onItemClicked(index) }
+                            .fillMaxWidth()
+                            .padding(12.dp)
+                    )
                 }
             }
         }
-    }
+    )
 }
 
 @Preview(showSystemUi = true)
 @Composable
 fun ItemsScreenPreview() {
     ItemsContent(
-        getScreenState = { ItemsViewModel.ScreenState.Loading },
+        getLoadResult = { LoadResult.Success(ItemsViewModel.ScreenState(listOf("1", "2", "3"))) },
     )
 }
