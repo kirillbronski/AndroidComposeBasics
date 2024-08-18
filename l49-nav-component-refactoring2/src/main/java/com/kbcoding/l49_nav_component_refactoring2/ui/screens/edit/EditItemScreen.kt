@@ -2,20 +2,15 @@ package com.kbcoding.l49_nav_component_refactoring2.ui.screens.edit
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kbcoding.l49_nav_component_refactoring2.R
-import com.kbcoding.l49_nav_component_refactoring2.EventConsumer
 import com.kbcoding.l49_nav_component_refactoring2.data.LoadResult
+import com.kbcoding.l49_nav_component_refactoring2.ui.action.ActionScreen
 import com.kbcoding.l49_nav_component_refactoring2.ui.components.ItemDetails
 import com.kbcoding.l49_nav_component_refactoring2.ui.components.ItemDetailsState
 import com.kbcoding.l49_nav_component_refactoring2.ui.components.LoadResultContent
-import com.kbcoding.l49_nav_component_refactoring2.ui.screens.LocalNavController
-import com.kbcoding.l49_nav_component_refactoring2.ui.screens.RouteEditItem
-import com.kbcoding.l49_nav_component_refactoring2.ui.screens.routeClass
 
 @Composable
 fun EditItemScreen(
@@ -24,38 +19,17 @@ fun EditItemScreen(
     val viewModel = hiltViewModel<EditItemViewModel, EditItemViewModel.Factory> { factory ->
         factory.create(index)
     }
-    val navController = LocalNavController.current
-    EventConsumer(channel = viewModel.exitChannel) {
-        if (navController.currentBackStackEntry.routeClass() == RouteEditItem::class) {
-            navController.popBackStack()
-        }
-    }
-    val screenState by viewModel.stateFlow.collectAsStateWithLifecycle()
-    EditItemContent(
-        loadResult = screenState,
-        onEditButtonClicked = viewModel::update,
-    )
-}
 
-@Composable
-fun EditItemContent(
-    loadResult: LoadResult<EditItemViewModel.ScreenState>,
-    onEditButtonClicked: (String) -> Unit,
-) {
-
-    LoadResultContent(
-        loadResult = loadResult,
-        content = { screenState ->
-            SuccessEditItemContent(
-                state = screenState,
-                onEditButtonClicked = onEditButtonClicked
-            )
+    ActionScreen(
+        delegate = viewModel,
+        content = { (screenState, onExecuteAction) ->
+            EditItemContent(state = screenState, onEditButtonClicked = onExecuteAction)
         }
     )
 }
 
 @Composable
-private fun SuccessEditItemContent(
+private fun EditItemContent(
     state: EditItemViewModel.ScreenState,
     onEditButtonClicked: (String) -> Unit,
 ) {
