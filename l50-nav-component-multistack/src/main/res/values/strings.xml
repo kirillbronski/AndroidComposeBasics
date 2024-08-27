@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">l47-nav-component-environment</string>
+    <string name="app_name">NavComponent 8 - MultiStack</string>
     <string name="enter_new_item">Enter new item</string>
     <string name="add">Add</string>
     <string name="items_screen">Items</string>
@@ -7,4 +7,6 @@
     <string name="edit_item_screen">Edit Item</string>
     <string name="edit_item_title">Edit item title</string>
     <string name="edit">Edit</string>
+    <string name="settings_screen">Settings</string>
+    <string name="profile_screen">Profile</string>
 </resources>

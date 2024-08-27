@@ -19,16 +19,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import com.kbcoding.l50_nav_component_multistack.ui.screens.ItemsGraph
 import com.kbcoding.l50_nav_component_multistack.ui.screens.LocalNavController
-import com.kbcoding.l50_nav_component_multistack.ui.screens.RouteAddItem
-import com.kbcoding.l50_nav_component_multistack.ui.screens.RouteEditItem
-import com.kbcoding.l50_nav_component_multistack.ui.screens.RouteItems
+import com.kbcoding.l50_nav_component_multistack.ui.screens.ProfileGraph
+import com.kbcoding.l50_nav_component_multistack.ui.screens.SettingsGraph
 import com.kbcoding.l50_nav_component_multistack.ui.screens.addItem.AddItemScreen
 import com.kbcoding.l50_nav_component_multistack.ui.screens.edit.EditItemScreen
 import com.kbcoding.l50_nav_component_multistack.ui.screens.items.ItemsScreen
+import com.kbcoding.l50_nav_component_multistack.ui.screens.profile.ProfileScreen
 import com.kbcoding.l50_nav_component_multistack.ui.screens.routeClass
+import com.kbcoding.l50_nav_component_multistack.ui.screens.settings.SettingsScreen
 import com.kbcoding.l50_nav_component_multistack.ui.theme.AndroidComposeBasicsTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -53,9 +56,11 @@ fun NavApp() {
     val navController = rememberNavController()
     val currentBackStackEntry by navController.currentBackStackEntryAsState()
     val titleRes = when (currentBackStackEntry.routeClass()) {
-        RouteItems::class -> R.string.items_screen
-        RouteAddItem::class -> R.string.add_item_screen
-        RouteEditItem::class -> R.string.add_item_screen
+        ItemsGraph.RouteItems::class -> R.string.items_screen
+        ItemsGraph.RouteAddItem::class -> R.string.add_item_screen
+        ItemsGraph.RouteEditItem::class -> R.string.add_item_screen
+        SettingsGraph.RouteSettings::class -> R.string.settings_screen
+        ProfileGraph.RouteProfile::class -> R.string.profile_screen
         else -> R.string.app_name
     }
 
@@ -73,13 +78,16 @@ fun NavApp() {
             )
         },
         floatingActionButton = {
-            if (currentBackStackEntry?.routeClass() == RouteItems::class) {
+            if (currentBackStackEntry?.routeClass() == ItemsGraph.RouteItems::class) {
                 FloatingActionButton(
-                    onClick = { navController.navigate(RouteAddItem) }
+                    onClick = { navController.navigate(ItemsGraph.RouteAddItem) }
                 ) {
                     Icon(imageVector = Icons.Default.Add, contentDescription = null)
                 }
             }
+        },
+        bottomBar = {
+            AppNavigationBar(navController = navController, tabs = MainTabs)
         }
     ) { paddingValues ->
         CompositionLocalProvider(
@@ -87,21 +95,28 @@ fun NavApp() {
         ) {
             NavHost(
                 navController = navController,
-                startDestination = RouteItems,
+                startDestination = ProfileGraph,
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(paddingValues)
             ) {
-                composable<RouteItems> { ItemsScreen() }
-                composable<RouteAddItem> { AddItemScreen() }
-                composable<RouteEditItem> { navBackStackEntry ->
-                    val route: RouteEditItem = navBackStackEntry.toRoute()
-                    EditItemScreen(index = route.index)
+                navigation<ItemsGraph>(startDestination = ItemsGraph.RouteItems) {
+                    composable<ItemsGraph.RouteItems> { ItemsScreen() }
+                    composable<ItemsGraph.RouteAddItem> { AddItemScreen() }
+                    composable<ItemsGraph.RouteEditItem> { navBackStackEntry ->
+                        val route: ItemsGraph.RouteEditItem = navBackStackEntry.toRoute()
+                        EditItemScreen(index = route.index)
+                    }
+                }
+                navigation<SettingsGraph>(startDestination = SettingsGraph.RouteSettings) {
+                    composable<SettingsGraph.RouteSettings> { SettingsScreen() }
+                }
+                navigation<ProfileGraph>(startDestination = ProfileGraph.RouteProfile) {
+                    composable<ProfileGraph.RouteProfile> { ProfileScreen() }
                 }
             }
         }
     }
-
 }
 
 @Preview(showBackground = true)

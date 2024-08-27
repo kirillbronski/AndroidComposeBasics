@@ -53,6 +53,8 @@ android {
 
 dependencies {
 
+    implementation(libs.kotlinx.collections.immutable)
+
     implementation(libs.nav.compose)
     implementation(libs.hilt.navigation.compose)
 

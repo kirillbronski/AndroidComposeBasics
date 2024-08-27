@@ -15,8 +15,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kbcoding.l50_nav_component_multistack.data.LoadResult
 import com.kbcoding.l50_nav_component_multistack.ui.components.LoadResultContent
+import com.kbcoding.l50_nav_component_multistack.ui.screens.ItemsGraph
 import com.kbcoding.l50_nav_component_multistack.ui.screens.LocalNavController
-import com.kbcoding.l50_nav_component_multistack.ui.screens.RouteEditItem
 
 
 @Composable
@@ -29,7 +29,7 @@ fun ItemsScreen() {
     ItemsContent(
         getLoadResult = { uiState.value },
         onItemClicked = { index ->
-            navController.navigate(RouteEditItem(index))
+            navController.navigate(ItemsGraph.RouteEditItem(index))
         }
     )
 }
