@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">l47-nav-component-environment</string>
+    <string name="app_name">l51-nav-component-deep-links</string>
     <string name="enter_new_item">Enter new item</string>
     <string name="add">Add</string>
     <string name="items_screen">Items</string>

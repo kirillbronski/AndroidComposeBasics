@@ -1,5 +1,6 @@
 package com.kbcoding.l51_nav_component_deep_links
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -15,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -93,9 +95,15 @@ fun NavApp() {
         CompositionLocalProvider(
             value = LocalNavController provides navController
         ) {
+            val intentHost = (LocalContext.current as Activity).intent?.data?.host
+            val startDestination: Any = when (intentHost) {
+                "settings" -> SettingsGraph
+                "items" -> ItemsGraph
+                else -> ProfileGraph
+            }
             NavHost(
                 navController = navController,
-                startDestination = ProfileGraph,
+                startDestination = startDestination,
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(paddingValues)
@@ -103,12 +111,17 @@ fun NavApp() {
                 navigation<ItemsGraph>(startDestination = ItemsGraph.RouteItems) {
                     composable<ItemsGraph.RouteItems> { ItemsScreen() }
                     composable<ItemsGraph.RouteAddItem> { AddItemScreen() }
-                    composable<ItemsGraph.RouteEditItem> { navBackStackEntry ->
+                    composable<ItemsGraph.RouteEditItem>(
+                        deepLinks = listOf(ItemsGraph.RouteEditItem.link)
+                    ) { navBackStackEntry ->
                         val route: ItemsGraph.RouteEditItem = navBackStackEntry.toRoute()
                         EditItemScreen(index = route.index)
                     }
                 }
-                navigation<SettingsGraph>(startDestination = SettingsGraph.RouteSettings) {
+                navigation<SettingsGraph>(
+                    startDestination = SettingsGraph.RouteSettings,
+                    deepLinks = listOf(SettingsGraph.link)
+                ) {
                     composable<SettingsGraph.RouteSettings> { SettingsScreen() }
                 }
                 navigation<ProfileGraph>(startDestination = ProfileGraph.RouteProfile) {

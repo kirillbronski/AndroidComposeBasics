@@ -2,6 +2,7 @@ package com.kbcoding.l51_nav_component_deep_links.ui.screens
 
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDestination
+import androidx.navigation.navDeepLink
 import kotlinx.serialization.Serializable
 import java.util.regex.Pattern
 import kotlin.reflect.KClass
@@ -16,11 +17,23 @@ data object ItemsGraph {
     data object RouteAddItem
 
     @Serializable
-    data class RouteEditItem(val index: Int)
+    data class RouteEditItem(
+        val index: Int
+    ) {
+        companion object {
+            val link = navDeepLink {
+                uriPattern = "nav://items/{index}"
+            }
+        }
+    }
 }
 
 @Serializable
 data object SettingsGraph {
+
+    val link = navDeepLink {
+        uriPattern = "nav://settings"
+    }
 
     @Serializable
     data object RouteSettings
