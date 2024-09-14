@@ -6,7 +6,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.kbcoding.l52_errors.R
-import com.kbcoding.l52_errors.ui.screens.addItem.AddItemViewModel
 import com.kbcoding.l52_errors.ui.action.ActionScreen
 import com.kbcoding.l52_errors.ui.components.ItemDetails
 import com.kbcoding.l52_errors.ui.components.ItemDetailsState

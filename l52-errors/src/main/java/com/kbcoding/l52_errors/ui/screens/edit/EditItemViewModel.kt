@@ -29,6 +29,10 @@ class EditItemViewModel @AssistedInject constructor(
         return ScreenState(loadedItem = itemsRepository.getByIndex(index))
     }
 
+    override fun hideProgress(input: ScreenState): ScreenState {
+        return input.copy(isEditInProgress = false)
+    }
+
     override suspend fun execute(action: String) {
         itemsRepository.update(index, action)
     }

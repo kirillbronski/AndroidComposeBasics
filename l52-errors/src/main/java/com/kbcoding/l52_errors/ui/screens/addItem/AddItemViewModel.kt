@@ -8,22 +8,26 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AddItemViewModel @Inject constructor(
-    private val repository: ItemsRepository
-) : ViewModel(), ActionViewModel.Delegate<AddItemViewModel.ScreenState, String> {
-
-    data class ScreenState(
-        val isProgressVisible: Boolean = false
-    )
+    private val itemsRepository: ItemsRepository,
+): ViewModel(), ActionViewModel.Delegate<AddItemViewModel.ScreenState, String> {
 
     override suspend fun loadState(): ScreenState {
         return ScreenState()
     }
 
-    override suspend fun execute(action: String) {
-        repository.add(title = action)
-    }
-
     override fun showProgress(input: ScreenState): ScreenState {
         return input.copy(isProgressVisible = true)
     }
+
+    override fun hideProgress(input: ScreenState): ScreenState {
+        return input.copy(isProgressVisible = false)
+    }
+
+    override suspend fun execute(action: String) {
+        itemsRepository.add(action)
+    }
+
+    data class ScreenState(
+        val isProgressVisible: Boolean = false,
+    )
 }

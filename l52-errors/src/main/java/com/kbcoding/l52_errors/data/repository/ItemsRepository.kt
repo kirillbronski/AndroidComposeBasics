@@ -1,5 +1,7 @@
 package com.kbcoding.l52_errors.data.repository
 
+import com.kbcoding.l52_errors.data.DuplicateException
+import com.kbcoding.l52_errors.data.LoadDataException
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,6 +18,7 @@ class ItemsRepository @Inject constructor() {
 
     suspend fun add(title: String) {
         delay(2000)
+        verifyNoDuplicates(title)
         itemsFlow.update { it + title }
     }
 
@@ -25,14 +28,22 @@ class ItemsRepository @Inject constructor() {
 
     suspend fun getByIndex(index: Int): String {
         delay(1000)
+        if (index == 0) throw LoadDataException()
         return itemsFlow.value[index]
     }
 
     suspend fun update(index: Int, newTitle: String) {
         delay(2000)
+        verifyNoDuplicates(newTitle, index)
         itemsFlow.update { oldList ->
             oldList.toMutableList().apply { set(index, newTitle) }
         }
     }
 
+    private fun verifyNoDuplicates(title: String, index: Int = -1) {
+        val duplicatedItemIndex = itemsFlow.value.indexOf(title)
+        if (duplicatedItemIndex != -1 && duplicatedItemIndex != index) {
+            throw DuplicateException(title)
+        }
+    }
 }
