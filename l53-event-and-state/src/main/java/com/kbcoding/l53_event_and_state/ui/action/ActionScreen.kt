@@ -30,13 +30,8 @@ fun <State, Action> ActionScreen(
         ActionViewModel(delegate)
     }
     val navController = LocalNavController.current
-    val rememberedScreenRoute = remember {
-        navController.currentBackStackEntry.routeClass()
-    }
     EventConsumer(channel = viewModel.exitChannel) {
-        if (rememberedScreenRoute == navController.currentBackStackEntry.routeClass()) {
-            navController.popBackStack()
-        }
+        navController.popBackStack()
     }
     val context = LocalContext.current
     EventConsumer(channel = viewModel.errorChannel) { exception ->
