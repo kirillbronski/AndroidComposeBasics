@@ -2,17 +2,16 @@ package com.kbcoding.l53_event_and_state.ui.action
 
 import android.widget.Toast
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.kbcoding.l53_event_and_state.EventConsumer
 import com.kbcoding.l53_event_and_state.ui.components.ExceptionToMessageMapper
 import com.kbcoding.l53_event_and_state.ui.components.LoadResultContent
 import com.kbcoding.l53_event_and_state.ui.screens.LocalNavController
-import com.kbcoding.l53_event_and_state.ui.screens.routeClass
 
 data class ActionContentState<State, Action>(
     val state: State,
@@ -30,14 +29,31 @@ fun <State, Action> ActionScreen(
         ActionViewModel(delegate)
     }
     val navController = LocalNavController.current
-    EventConsumer(channel = viewModel.exitChannel) {
-        navController.popBackStack()
+    val baseScreenState by viewModel.baseScreenState.collectAsStateWithLifecycle(
+        minActiveState = Lifecycle.State.RESUMED
+    )
+
+    LaunchedEffect(baseScreenState) {
+        baseScreenState.exit?.let {
+            navController.popBackStack()
+            viewModel.handledExit()
+        }
     }
+//    EventConsumer(channel = viewModel.exitChannel) {
+//        navController.popBackStack()
+//    }
     val context = LocalContext.current
-    EventConsumer(channel = viewModel.errorChannel) { exception ->
-        val message = exceptionToMessageMapper.getUserMessage(exception, context)
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    LaunchedEffect(baseScreenState) {
+        baseScreenState.exception?.let { exception ->
+            val message = exceptionToMessageMapper.getUserMessage(exception, context)
+            Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+            viewModel.onExceptionHandled()
+        }
     }
+//    EventConsumer(channel = viewModel.errorChannel) { exception ->
+//        val message = exceptionToMessageMapper.getUserMessage(exception, context)
+//        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+//    }
     val loadResult by viewModel.stateFlow.collectAsStateWithLifecycle()
     LoadResultContent(
         loadResult = loadResult,
