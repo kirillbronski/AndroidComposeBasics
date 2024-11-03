@@ -21,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.dialog
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
@@ -110,7 +111,7 @@ fun NavApp() {
             ) {
                 navigation<ItemsGraph>(startDestination = ItemsGraph.RouteItems) {
                     composable<ItemsGraph.RouteItems> { ItemsScreen() }
-                    composable<ItemsGraph.RouteAddItem> { AddItemScreen() }
+                    dialog<ItemsGraph.RouteAddItem> { AddItemScreen() }
                     composable<ItemsGraph.RouteEditItem>(
                         deepLinks = listOf(ItemsGraph.RouteEditItem.link)
                     ) { navBackStackEntry ->
