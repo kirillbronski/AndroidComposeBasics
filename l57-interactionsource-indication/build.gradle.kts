@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.kbcoding.animation_scrossfade_animatedcontent"
+    namespace = "com.kbcoding.l57_interactionsource_indication"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.kbcoding.animation_scrossfade_animatedcontent"
+        applicationId = "com.kbcoding.l57_interactionsource_indication"
         minSdk = 26
         targetSdk = 35
         versionCode = 1
@@ -27,12 +27,8 @@ android {
             )
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = "11"
+    kotlin {
+        jvmToolchain(17)
     }
     buildFeatures {
         compose = true
