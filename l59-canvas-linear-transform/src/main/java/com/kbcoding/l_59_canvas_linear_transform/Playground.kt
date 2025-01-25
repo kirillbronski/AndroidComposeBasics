@@ -12,9 +12,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.TileMode
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
@@ -34,11 +37,16 @@ fun Playground(
         label = "GradientAnimation"
     )
     Box(modifier = modifier
-        .sizeIn(300.dp, 300.dp)
+        .sizeIn(300.dp, 200.dp)
         .drawBehind {
-            val cellSize = size / 8f
-            val gradientStart = size.width * animateGradient.value
-            val gradientEnd = size.width * (animateGradient.value + 0.5f)
+            val contentRect = Rect(
+                offset = Offset(200f, 100f),
+                size = Size(size.minDimension / 1.5f, size.minDimension / 1.5f)
+            )
+
+            val cellSize = contentRect.size / 8f
+            val gradientStart = contentRect.size.width * animateGradient.value
+            val gradientEnd = contentRect.size.width * (animateGradient.value + 0.5f)
             val brush = Brush.linearGradient(
                 start = Offset(gradientStart, gradientStart),
                 end = Offset(gradientEnd, gradientEnd),
@@ -52,7 +60,7 @@ fun Playground(
             )
             for (i in 0..7) {
                 for (j in 0..7) {
-                    val topLeft = Offset(x = i * cellSize.width, y = j * cellSize.height)
+                    val topLeft = contentRect.topLeft + Offset(x = i * cellSize.width, y = j * cellSize.height)
                     if ((i + j) % 2 == 0) {
                         drawRect(
                             brush = brush,
@@ -69,5 +77,11 @@ fun Playground(
                     }
                 }
             }
+            drawRect(
+                color = Color.Black,
+                topLeft = contentRect.topLeft,
+                size = contentRect.size,
+                style = Stroke(width = 3.dp.toPx())
+            )
         })
 }
