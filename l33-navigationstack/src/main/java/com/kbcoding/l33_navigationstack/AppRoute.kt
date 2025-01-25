@@ -16,7 +16,7 @@ sealed class AppRoute(
      */
     @StringRes val titleRes: Int
 
-): Route {
+) : Route {
 
     /**
      * "Add New Item" screen.

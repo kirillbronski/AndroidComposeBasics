@@ -55,7 +55,9 @@ fun AppScreen() {
         BackHandler {
             println("BackHandlerTest 222")
         }
-        Box(modifier = Modifier.size(60.dp).background(Color.Red))
+        Box(modifier = Modifier
+            .size(60.dp)
+            .background(Color.Red))
     }
 
     Column(

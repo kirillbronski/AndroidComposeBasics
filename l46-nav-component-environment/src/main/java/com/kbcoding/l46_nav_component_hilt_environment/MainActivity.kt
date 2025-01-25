@@ -42,7 +42,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             AndroidComposeBasicsTheme {
-                    NavApp()
+                NavApp()
             }
         }
     }

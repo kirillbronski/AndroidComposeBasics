@@ -12,7 +12,9 @@ import androidx.compose.ui.unit.sp
 fun ProfileScreen() {
     Text(
         text = "Profile Screen",
-        modifier = Modifier.fillMaxSize().wrapContentHeight(),
+        modifier = Modifier
+            .fillMaxSize()
+            .wrapContentHeight(),
         textAlign = TextAlign.Center,
         fontSize = 20.sp
     )

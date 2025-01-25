@@ -1,19 +1,12 @@
 package com.kbcoding.l49_nav_component_refactoring2.ui.screens.edit
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.kbcoding.l49_nav_component_refactoring2.data.LoadResult
 import com.kbcoding.l49_nav_component_refactoring2.data.repository.ItemsRepository
 import com.kbcoding.l49_nav_component_refactoring2.ui.action.ActionViewModel
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.channels.ReceiveChannel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
 
 @HiltViewModel(assistedFactory = EditItemViewModel.Factory::class)
 class EditItemViewModel @AssistedInject constructor(

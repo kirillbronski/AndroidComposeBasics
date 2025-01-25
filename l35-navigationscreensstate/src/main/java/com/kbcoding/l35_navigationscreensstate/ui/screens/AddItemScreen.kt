@@ -12,9 +12,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -24,8 +24,6 @@ import com.kbcoding.l35_navigationscreensstate.ItemsRepository
 import com.kbcoding.l35_navigationscreensstate.R
 import com.kbcoding.l35_navigationscreensstate.ui.AppRoute
 import com.kbcoding.navigationstack.navigation.LocalRouter
-import com.kbcoding.navigationstack.navigation.Route
-import com.kbcoding.navigationstack.navigation.Router
 
 
 @Composable

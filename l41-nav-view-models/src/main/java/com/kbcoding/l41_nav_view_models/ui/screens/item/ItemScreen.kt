@@ -37,6 +37,7 @@ fun itemScreenProducer(args: ItemScreenArgs): () -> ItemScreen {
 sealed class ItemScreenArgs : Parcelable {
     @Parcelize
     data object Add : ItemScreenArgs()
+
     @Parcelize
     data class Edit(val index: Int) : ItemScreenArgs()
 }

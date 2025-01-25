@@ -1,10 +1,10 @@
 package com.kbcoding.l38_nav_communication.ui
 
 import com.kbcoding.l38_nav_communication.ui.screens.ItemScreenArgs
-import com.kbcoding.l38_nav_communication.ui.screens.itemScreenProducer
 import com.kbcoding.l38_nav_communication.ui.screens.ItemsScreenProducer
 import com.kbcoding.l38_nav_communication.ui.screens.ProfileScreenProducer
 import com.kbcoding.l38_nav_communication.ui.screens.SettingsScreenProducer
+import com.kbcoding.l38_nav_communication.ui.screens.itemScreenProducer
 import com.kbcoding.navigationstack.navigation.Route
 import kotlinx.parcelize.Parcelize
 
@@ -25,8 +25,10 @@ sealed class AppRoute(
     ) : AppRoute(screenProducer) {
         @Parcelize
         data object Items : Tab(ItemsScreenProducer)
+
         @Parcelize
         data object Settings : Tab(SettingsScreenProducer)
+
         @Parcelize
         data object Profile : Tab(ProfileScreenProducer)
     }

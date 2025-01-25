@@ -24,10 +24,6 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import com.kbcoding.l52_errors.AppNavigationBar
-import com.kbcoding.l52_errors.AppToolbar
-import com.kbcoding.l52_errors.MainTabs
-import com.kbcoding.l52_errors.NavigateUpAction
 import com.kbcoding.l52_errors.ui.screens.ItemsGraph
 import com.kbcoding.l52_errors.ui.screens.LocalNavController
 import com.kbcoding.l52_errors.ui.screens.ProfileGraph

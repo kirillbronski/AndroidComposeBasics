@@ -1,7 +1,6 @@
 package com.kbcoding.l47_nav_component_hilt_args
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -23,10 +22,10 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.kbcoding.l47_nav_component_args.R
+import com.kbcoding.l47_nav_component_hilt_args.screens.LocalNavController
 import com.kbcoding.l47_nav_component_hilt_args.screens.RouteAddItem
 import com.kbcoding.l47_nav_component_hilt_args.screens.RouteEditItem
 import com.kbcoding.l47_nav_component_hilt_args.screens.RouteItems
-import com.kbcoding.l47_nav_component_hilt_args.screens.LocalNavController
 import com.kbcoding.l47_nav_component_hilt_args.screens.addItem.AddItemScreen
 import com.kbcoding.l47_nav_component_hilt_args.screens.edit.EditItemScreen
 import com.kbcoding.l47_nav_component_hilt_args.screens.items.ItemsScreen

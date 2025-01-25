@@ -1,10 +1,10 @@
 package com.kbcoding.l42_nav_view_models_hilt.ui
 
+import com.kbcoding.l42_nav_view_models_hilt.ui.screens.ProfileScreenProducer
+import com.kbcoding.l42_nav_view_models_hilt.ui.screens.SettingsScreenProducer
 import com.kbcoding.l42_nav_view_models_hilt.ui.screens.item.ItemScreenArgs
 import com.kbcoding.l42_nav_view_models_hilt.ui.screens.item.itemScreenProducer
 import com.kbcoding.l42_nav_view_models_hilt.ui.screens.items.ItemsScreenProducer
-import com.kbcoding.l42_nav_view_models_hilt.ui.screens.ProfileScreenProducer
-import com.kbcoding.l42_nav_view_models_hilt.ui.screens.SettingsScreenProducer
 import com.kbcoding.navigationstack.navigation.Route
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.parcelize.Parcelize

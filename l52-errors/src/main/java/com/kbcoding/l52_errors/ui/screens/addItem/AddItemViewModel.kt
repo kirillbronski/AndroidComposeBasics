@@ -9,7 +9,7 @@ import javax.inject.Inject
 @HiltViewModel
 class AddItemViewModel @Inject constructor(
     private val itemsRepository: ItemsRepository,
-): ViewModel(), ActionViewModel.Delegate<AddItemViewModel.ScreenState, String> {
+) : ViewModel(), ActionViewModel.Delegate<AddItemViewModel.ScreenState, String> {
 
     override suspend fun loadState(): ScreenState {
         return ScreenState()

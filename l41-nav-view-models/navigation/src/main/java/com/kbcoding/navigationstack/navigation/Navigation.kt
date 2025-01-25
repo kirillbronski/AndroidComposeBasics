@@ -5,7 +5,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.platform.LocalContext
 import com.kbcoding.navigationstack.navigation.internal.InternalNavigationState
@@ -15,7 +14,6 @@ import com.kbcoding.navigationstack.navigation.links.DeepLinkHandler
 import com.kbcoding.navigationstack.navigation.links.MultiStackState
 import com.kbcoding.navigationstack.navigation.links.StackState
 import kotlinx.collections.immutable.ImmutableList
-import kotlinx.collections.immutable.persistentListOf
 
 /**
  * Entry point to the navigation stuff. Use [rememberNavigation] in order

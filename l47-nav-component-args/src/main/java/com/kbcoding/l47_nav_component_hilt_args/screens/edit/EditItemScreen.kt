@@ -22,8 +22,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.kbcoding.l47_nav_component_args.R
 import com.kbcoding.l47_nav_component_hilt_args.EventConsumer
-import com.kbcoding.l47_nav_component_hilt_args.screens.RouteEditItem
 import com.kbcoding.l47_nav_component_hilt_args.screens.LocalNavController
+import com.kbcoding.l47_nav_component_hilt_args.screens.RouteEditItem
 import com.kbcoding.l47_nav_component_hilt_args.screens.routeClass
 
 @Composable
@@ -58,7 +58,10 @@ fun EditItemContent(
     ) {
         when (state) {
             EditItemViewModel.ScreenState.Loading -> CircularProgressIndicator()
-            is EditItemViewModel.ScreenState.Success -> SuccessEditItemContent(state, onEditButtonClicked)
+            is EditItemViewModel.ScreenState.Success -> SuccessEditItemContent(
+                state,
+                onEditButtonClicked
+            )
         }
     }
 }

@@ -20,9 +20,12 @@ sealed class AppRoute(
     sealed class Tab(
         screenProducer: () -> AppScreen,
     ) : AppRoute(screenProducer) {
-        @Parcelize data object Items : Tab(ItemsScreenProducer)
-        @Parcelize data object Settings : Tab(SettingsScreenProducer)
-        @Parcelize data object Profile : Tab(ProfileScreenProducer)
+        @Parcelize
+        data object Items : Tab(ItemsScreenProducer)
+        @Parcelize
+        data object Settings : Tab(SettingsScreenProducer)
+        @Parcelize
+        data object Profile : Tab(ProfileScreenProducer)
     }
 }
 

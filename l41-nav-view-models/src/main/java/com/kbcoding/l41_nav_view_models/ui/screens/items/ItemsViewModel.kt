@@ -15,6 +15,7 @@ class ItemsViewModel(
         when (response.args) {
             is ItemScreenArgs.Add ->
                 repository.addItem(response.newValue)
+
             is ItemScreenArgs.Edit ->
                 repository.updateItem(response.args.index, response.newValue)
         }

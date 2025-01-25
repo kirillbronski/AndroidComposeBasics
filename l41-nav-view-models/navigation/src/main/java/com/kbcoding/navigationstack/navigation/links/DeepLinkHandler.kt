@@ -10,7 +10,7 @@ fun interface DeepLinkHandler {
     ): MultiStackState
 
     companion object {
-        val DEFAULT  = DeepLinkHandler {uri, inputState -> inputState}
+        val DEFAULT = DeepLinkHandler { uri, inputState -> inputState }
     }
 
 }

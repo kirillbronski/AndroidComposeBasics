@@ -27,8 +27,11 @@ fun Rectangle(
     height: Dp = 100.dp,
     color: Color = Color.Red,
 ) {
-    Box(modifier.then(
-        Modifier
-            .size(width, height)
-            .background(color)))
+    Box(
+        modifier.then(
+            Modifier
+                .size(width, height)
+                .background(color)
+        )
+    )
 }

@@ -11,7 +11,7 @@ sealed class LoadResult<out T> {
 
 inline fun <Input, Output> LoadResult<Input>.map(
     mapper: (Input) -> Output,
-) : LoadResult<Output> {
+): LoadResult<Output> {
     return when (this) {
         LoadResult.Loading -> LoadResult.Loading
         is LoadResult.Success -> LoadResult.Success(mapper(data))

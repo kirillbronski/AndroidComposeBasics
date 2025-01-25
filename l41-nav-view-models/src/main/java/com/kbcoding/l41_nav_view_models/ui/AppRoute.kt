@@ -1,10 +1,10 @@
 package com.kbcoding.l41_nav_view_models.ui
 
+import com.kbcoding.l41_nav_view_models.ui.screens.ProfileScreenProducer
+import com.kbcoding.l41_nav_view_models.ui.screens.SettingsScreenProducer
 import com.kbcoding.l41_nav_view_models.ui.screens.item.ItemScreenArgs
 import com.kbcoding.l41_nav_view_models.ui.screens.item.itemScreenProducer
 import com.kbcoding.l41_nav_view_models.ui.screens.items.ItemsScreenProducer
-import com.kbcoding.l41_nav_view_models.ui.screens.ProfileScreenProducer
-import com.kbcoding.l41_nav_view_models.ui.screens.SettingsScreenProducer
 import com.kbcoding.navigationstack.navigation.Route
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.parcelize.Parcelize

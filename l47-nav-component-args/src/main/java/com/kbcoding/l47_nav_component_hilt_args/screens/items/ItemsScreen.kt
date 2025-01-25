@@ -16,8 +16,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.kbcoding.l47_nav_component_hilt_args.screens.RouteEditItem
 import com.kbcoding.l47_nav_component_hilt_args.screens.LocalNavController
+import com.kbcoding.l47_nav_component_hilt_args.screens.RouteEditItem
 
 
 @Composable

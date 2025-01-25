@@ -1,6 +1,5 @@
 package com.kbcoding.l47_nav_component_hilt_args.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

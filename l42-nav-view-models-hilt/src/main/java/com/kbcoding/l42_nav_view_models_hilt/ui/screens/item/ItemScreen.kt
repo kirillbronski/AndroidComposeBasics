@@ -21,7 +21,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.kbcoding.l42_nav_view_models_hilt.R
 import com.kbcoding.l42_nav_view_models_hilt.di.injectViewModel
 import com.kbcoding.l42_nav_view_models_hilt.ui.AppRoute

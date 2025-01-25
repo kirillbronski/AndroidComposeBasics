@@ -11,8 +11,8 @@ import com.kbcoding.l48_nav_component_refactoring.EventConsumer
 import com.kbcoding.l48_nav_component_refactoring.R
 import com.kbcoding.l48_nav_component_refactoring.ui.components.ItemDetails
 import com.kbcoding.l48_nav_component_refactoring.ui.components.ItemDetailsState
-import com.kbcoding.l48_nav_component_refactoring.ui.screens.RouteAddItem
 import com.kbcoding.l48_nav_component_refactoring.ui.screens.LocalNavController
+import com.kbcoding.l48_nav_component_refactoring.ui.screens.RouteAddItem
 import com.kbcoding.l48_nav_component_refactoring.ui.screens.routeClass
 
 @Composable

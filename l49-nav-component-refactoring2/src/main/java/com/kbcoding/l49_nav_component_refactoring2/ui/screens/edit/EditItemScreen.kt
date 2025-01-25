@@ -6,11 +6,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.kbcoding.l49_nav_component_refactoring2.R
-import com.kbcoding.l49_nav_component_refactoring2.data.LoadResult
 import com.kbcoding.l49_nav_component_refactoring2.ui.action.ActionScreen
 import com.kbcoding.l49_nav_component_refactoring2.ui.components.ItemDetails
 import com.kbcoding.l49_nav_component_refactoring2.ui.components.ItemDetailsState
-import com.kbcoding.l49_nav_component_refactoring2.ui.components.LoadResultContent
 
 @Composable
 fun EditItemScreen(

@@ -42,8 +42,10 @@ sealed class AppRoute(
 
         @Parcelize
         data object Items : Tab(R.string.items, Icons.Default.List)
+
         @Parcelize
         data object Settings : Tab(R.string.settings, Icons.Default.Settings)
+
         @Parcelize
         data object Profile : Tab(R.string.profile, Icons.Default.AccountBox)
 

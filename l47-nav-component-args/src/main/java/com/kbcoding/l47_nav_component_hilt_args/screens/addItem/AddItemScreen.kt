@@ -20,8 +20,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.kbcoding.l47_nav_component_hilt_args.EventConsumer
-import com.kbcoding.l47_nav_component_hilt_args.screens.RouteAddItem
 import com.kbcoding.l47_nav_component_hilt_args.screens.LocalNavController
+import com.kbcoding.l47_nav_component_hilt_args.screens.RouteAddItem
 import com.kbcoding.l47_nav_component_hilt_args.screens.routeClass
 
 @Composable

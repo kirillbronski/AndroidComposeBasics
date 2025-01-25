@@ -1,6 +1,5 @@
 package com.kbcoding.l57_interactionsource_indication.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

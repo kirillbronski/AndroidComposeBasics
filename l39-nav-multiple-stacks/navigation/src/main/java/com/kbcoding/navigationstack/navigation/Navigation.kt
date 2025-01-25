@@ -9,7 +9,6 @@ import com.kbcoding.navigationstack.navigation.internal.InternalNavigationState
 import com.kbcoding.navigationstack.navigation.internal.ScreenMultiStack
 import com.kbcoding.navigationstack.navigation.internal.ScreenStack
 import kotlinx.collections.immutable.ImmutableList
-import kotlinx.collections.immutable.persistentListOf
 
 /**
  * Entry point to the navigation stuff. Use [rememberNavigation] in order

@@ -59,7 +59,7 @@ fun UserCard(
             .clickable(
                 interactionSource = remember {
                     MutableInteractionSource()
-                 },
+                },
                 indication = rememberRipple(),
                 onClick = { onUserClicked?.invoke() }
             )

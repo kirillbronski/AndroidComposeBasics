@@ -30,6 +30,7 @@ fun <T> LoadResultContent(
         LoadResult.Loading -> Box(modifier = modifier) {
             CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
         }
+
         is LoadResult.Success -> content(loadResult.data)
         is LoadResult.Error -> {
             Column(
@@ -54,11 +55,16 @@ fun <T> LoadResultContent(
 
 fun interface ExceptionToMessageMapper {
     fun getUserMessage(exception: Exception, context: Context): String
+
     companion object {
         val Default = ExceptionToMessageMapper { exception, context ->
             when (exception) {
                 is LoadDataException -> context.getString(R.string.failed_to_load_data)
-                is DuplicateException -> context.getString(R.string.already_exists, exception.duplicatedValue)
+                is DuplicateException -> context.getString(
+                    R.string.already_exists,
+                    exception.duplicatedValue
+                )
+
                 else -> context.getString(R.string.unknown_error)
             }
         }

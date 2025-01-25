@@ -13,7 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ItemsViewModel @Inject constructor(
     repository: ItemsRepository
-): ViewModel() {
+) : ViewModel() {
 
     val stateFlow: StateFlow<ScreenState> = repository.getItems()
         .map(ScreenState::Success)

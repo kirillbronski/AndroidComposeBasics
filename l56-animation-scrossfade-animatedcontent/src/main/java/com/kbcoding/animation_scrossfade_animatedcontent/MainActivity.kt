@@ -81,6 +81,7 @@ fun CrossFadeApp() {
                         currentScene = Scene.Image
                     }
                 }
+
                 Scene.Loading -> LoadingScene()
                 Scene.Image -> ImageScene(
                     onReset = {
@@ -105,7 +106,7 @@ fun AnimatedContentApp() {
                 initialOffsetX = { fullWidth -> fullWidth },
                 animationSpec = tween(1000)
             ) togetherWith slideOutHorizontally(
-                targetOffsetX =  { fullWidth -> -fullWidth },
+                targetOffsetX = { fullWidth -> -fullWidth },
                 animationSpec = tween(1000)
             )
         }
@@ -122,6 +123,7 @@ fun AnimatedContentApp() {
                         currentScene = Scene.Image
                     }
                 }
+
                 Scene.Loading -> LoadingScene()
                 Scene.Image -> ImageScene(
                     onReset = {

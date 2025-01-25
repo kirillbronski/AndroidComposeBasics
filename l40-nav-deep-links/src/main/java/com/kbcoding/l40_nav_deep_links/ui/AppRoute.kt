@@ -1,13 +1,12 @@
 package com.kbcoding.l40_nav_deep_links.ui
 
 import com.kbcoding.l40_nav_deep_links.ui.screens.ItemScreenArgs
-import com.kbcoding.l40_nav_deep_links.ui.screens.itemScreenProducer
 import com.kbcoding.l40_nav_deep_links.ui.screens.ItemsScreenProducer
 import com.kbcoding.l40_nav_deep_links.ui.screens.ProfileScreenProducer
 import com.kbcoding.l40_nav_deep_links.ui.screens.SettingsScreenProducer
+import com.kbcoding.l40_nav_deep_links.ui.screens.itemScreenProducer
 import com.kbcoding.navigationstack.navigation.Route
 import kotlinx.collections.immutable.persistentListOf
-import kotlinx.collections.immutable.persistentMapOf
 import kotlinx.parcelize.Parcelize
 
 /**

@@ -271,7 +271,9 @@ fun ItemsScreen(items: List<String>) {
         Text(
             text = stringResource(R.string.no_items),
             textAlign = TextAlign.Center,
-            modifier = Modifier.fillMaxSize().wrapContentHeight(),
+            modifier = Modifier
+                .fillMaxSize()
+                .wrapContentHeight(),
         )
     } else {
         LazyColumn {
@@ -320,7 +322,9 @@ fun SettingsScreen() {
         text = "Settings Screen",
         textAlign = TextAlign.Center,
         fontSize = 20.sp,
-        modifier = Modifier.fillMaxSize().wrapContentHeight(),
+        modifier = Modifier
+            .fillMaxSize()
+            .wrapContentHeight(),
     )
 }
 
@@ -330,7 +334,9 @@ fun ProfileScreen() {
         text = "Profile Screen",
         textAlign = TextAlign.Center,
         fontSize = 20.sp,
-        modifier = Modifier.fillMaxSize().wrapContentHeight(),
+        modifier = Modifier
+            .fillMaxSize()
+            .wrapContentHeight(),
     )
 }
 
